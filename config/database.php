@@ -15,9 +15,9 @@ try { //we use to avoid getting an error that will display our server, username 
     $sql = $conn->prepare("CREATE DATABASE IF NOT EXISTS camagru");
     $sql->execute();
     //echo "connected to database successful\n";
-    /*$sql = "CREATE DATABASE IF NOT EXISTS camagru";
+    $sql = "CREATE DATABASE IF NOT EXISTS camagru";
     $conn->exec($sql);
-    $conn->exec("use camagru");*/
+    $conn->exec("use camagru");
     }
     catch (PDOException $e){
         echo "Connection failed: " . $e->getMessage();
