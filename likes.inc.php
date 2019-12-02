@@ -37,17 +37,17 @@ if (isset($_SESSION['idofuser']))
             mail($to, $subject, $message, $headers);
         }
         $conn = null;
-        header("Location: ../Camagru/index.php?like=success");
+        header("Location: index.php?like=success");
         exit();
     }
     else{
         $conn = null;
-        header("Location: ../Camagru/index.php?like=failed");
+        header("Location: index.php?like=failed");
         exit();
     }
    
 }
 else {
     $conn = null;
-    header("Location: ../Camagru/index.php?likes=failure");
+    header("Location: index.php?likes=failure");
 }

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css">
-<html>
+<HTML>
 <BODY>
     <DIV class= "wrap">
         <H1>Sign Up</H1>
@@ -27,5 +27,8 @@
         </FORM>
         
     </DIV>
-
+<FOOTER> 
+    <?PHP require 'footer.php'?>
+</FOOTER>
 </BODY>
+</HTML>

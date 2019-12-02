@@ -10,6 +10,6 @@ if (isset($_SESSION['idofuser']) && isset($_POST['del']))
     $stmnt->execute([$image_id, $_SESSION['idofuser']]);
     $conn = null;
     ///CAN I DELETE THE PIC FROM FOLDER TOO??????
-    header("Location: ../Camagru/index.php?delimage=success");
+    header("Location: index.php?delimage=success");
     exit();
 }

@@ -13,7 +13,7 @@
         if (empty($row) || $row['verified'] == 0){
             echo "made it\n";
             $conn = null;
-            header("Location: ../Camagru/index.php");
+            header("Location: index.php");
             exit();
         }
         else{

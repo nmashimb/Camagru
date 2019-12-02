@@ -40,7 +40,6 @@
                 <?php
                 if (isset($_SESSION['idofuser']) && isset($_SESSION['nameofuser']))
                 {
-                    //require 'dbh.inc.php';
                     require 'config/database.php';
                     if (isset($_GET['start']))
                     {
@@ -50,10 +49,11 @@
                     }
                     $pics_per_page = 5;
                     $start = ($pageno - 1) * $pics_per_page;
-                    $stmnt = $conn->prepare("SELECT * FROM gallery WHERE image_id=?");
-                    $stmnt->execute([$_SESSION['idofuser']]);
-                    $rows = $stmnt->fetch();
-                    $total_rows = sizeof($rows);
+                    $stmnt = $conn->prepare("SELECT COUNT(*) FROM gallery");
+                    $stmnt->execute();
+                    $row = $stmnt->fetch();
+                    $total_rows = $row[0];
+
                     $total_pages = ceil($total_rows / $pics_per_page);
                     $idofuser = $_SESSION['idofuser'];
                     $stmnt = $conn->prepare("SELECT * FROM gallery WHERE image_uploader_id=? ORDER BY image_order DESC LIMIT $start, $pics_per_page");
@@ -123,7 +123,3 @@
     </DIV>
     </BODY>
 </HTML>
-
-<?php
-    //require 'footer.php';
-?>

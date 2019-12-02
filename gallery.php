@@ -14,7 +14,7 @@
             <DIV>
                 <!-- CONTAINERS THAT WILL HOLD EACH PIC IN GALLERY -->
                 <?php
-                require 'config/database.php';
+                
                 /////PAGINATION
                 if (isset($_GET['start']))
                 {
@@ -24,11 +24,12 @@
                 }
                 $pics_per_page = 5;
                 $start = ($pageno - 1) * $pics_per_page;
-        
-                $stmnt = $conn->prepare("SELECT * FROM gallery");
+                require 'config/database.php';
+                $stmnt = $conn->prepare("SELECT COUNT(*) FROM gallery");
                 $stmnt->execute();
-                $rows = $stmnt->fetch();
-                $total_rows = sizeof($rows);
+                $row = $stmnt->fetch();
+                $total_rows = $row[0];
+                
                 $total_pages = ceil($total_rows / $pics_per_page);
                 $stmnt = $conn->prepare("SELECT * FROM gallery ORDER BY image_order DESC LIMIT $start, $pics_per_page");
                 $stmnt->execute();

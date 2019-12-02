@@ -26,13 +26,16 @@ if (isset($_POST['sub']))
                 $nameofimg = $imageName. ".".uniqid("", true). ".".$imageExt; //use to upload
                 $imageDes = "images/gallery/".$nameofimg;
                 if (empty($nameofimg) || empty($imageDes)){
-                    header("Location: ../Camagru/gallery.php?error=upload=empty");
+                    header("Location: gallery.php?error=upload=empty");
                     exit();
                 }
                 
                 require 'config/database.php';
                 $uploaderID = $_SESSION['idofuser'];
                 $uploaderName = $_SESSION['nameofuser'];
+                
+                
+                
                 $stmnt = $conn->prepare("SELECT * FROM gallery");
                 $stmnt->execute();
                 $rows = $stmnt->rowCount(); //no. of pics in gallery
@@ -42,7 +45,7 @@ if (isset($_POST['sub']))
                 $stmnt = $conn->prepare($sql);
                 $stmnt->execute([$nameofimg, $imageCapt, $uploaderID, $uploaderName, $ImgOrder]);
                 move_uploaded_file($imageTempName, $imageDes);
-                header("Location: ../Camagru/index.php?upload=success");
+                header("Location: index.php?upload=success");
                 exit(); //added
             }
             else{

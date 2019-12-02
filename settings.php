@@ -51,11 +51,11 @@
         }   
         $conn = null; 
     ?>
+    <?php
+    require 'footer.php';
+    ?>
+</FOOTER>
     </BODY>
 </MAIN>
 </HTML>
 <FOOTER>
-<?php
-    require 'footer.php';
-?>
-</FOOTER>

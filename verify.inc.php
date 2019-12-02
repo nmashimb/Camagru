@@ -1,6 +1,6 @@
-<!-- veirify account, after email link clicked-->
+<!-- verify account, after email link clicked-->
 <?php
-
+echo "sdsd";
 if (!empty($_GET['user']) && !empty($_GET['vkey'])){
 
     require 'config/database.php';
@@ -16,12 +16,12 @@ if (!empty($_GET['user']) && !empty($_GET['vkey'])){
         $data = [':ver'=>"1", ':id'=>$user_id];
         $ver_update->execute($data);
         $conn = null;
-        header("Location: ../Camagru/index.php");
+        header("Location: index.php");
         exit();
    }
    else{
         $conn = null;
-        header("Location: ../Camagru/index.php");
+        header("Location: index.php");
         exit();
    }
 }

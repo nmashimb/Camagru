@@ -4,17 +4,17 @@
     {
         if (isset($_POST['cusername']) && empty($_POST['usernamevar']))
         {
-            header("Location: ../Camagru/settings.php");
+            header("Location: settings.php");
             exit();
         }
         if (isset($_POST['cemail']) && empty($_POST['emailvar']))
         {
-            header("Location: ../Camagru/settings.php");
+            header("Location: settings.php");
             exit();
         }
         if (isset($_POST['cpassword']) && empty($_POST['passwordvar']))
         {
-            header("Location: ../Camagru/settings.php");
+            header("Location: settings.php");
             exit();
         }
         require 'config/database.php';
@@ -25,11 +25,11 @@
         if (empty($row))
         {
             $conn = null;
-            header("Location: ../Camagru/settings.php");
+            header("Location: settings.php");
         }
         if (isset($_POST['back']))
         {
-            header("Location: ../Camagru/index.php?back=success");
+            header("Location: index.php?back=success");
             exit();
         }
         if ($_POST['sendemailforcomm'])
@@ -41,7 +41,7 @@
                 $stmnt = $conn->prepare("UPDATE users SET comments_email=? WHERE id=?");
                 $stmnt->execute([$turn_off, $_SESSION['idofuser']]);
                 $conn = null;
-                header("Location: ../Camagru/settings.php?commentsemail=success");
+                header("Location: settings.php?commentsemail=success");
                 exit();
             }
             if($row['comments_email'] == 0){
@@ -49,7 +49,7 @@
                 $stmnt = $conn->prepare("UPDATE users SET comments_email=? WHERE id=?");
                 $stmnt->execute([$turn_on, $_SESSION['idofuser']]);
                 $conn = null;
-                header("Location: ../Camagru/settings.php?commentsemail=success");
+                header("Location: settings.php?commentsemail=success");
                 exit();
             }
         }
@@ -62,7 +62,7 @@
                 $stmnt = $conn->prepare("UPDATE users SET likes_email=? WHERE id=?");
                 $stmnt->execute([$turn_off, $_SESSION['idofuser']]);
                 $conn = null;
-                header("Location: ../Camagru/settings.php?likesemail=success");
+                header("Location: settings.php?likesemail=success");
                 exit();
             }
             else{
@@ -70,7 +70,7 @@
                 $stmnt = $conn->prepare("UPDATE users SET likes_email=? WHERE id=?");
                 $stmnt->execute([$turn_on, $_SESSION['idofuser']]);
                 $conn = null;
-                header("Location: ../Camagru/settings.php?likesemail=success");
+                header("Location: settings.php?likesemail=success");
                 exit();
             }
         }
@@ -80,14 +80,14 @@
             if (!preg_match("/^[a-zA-Z0-9]*$/", $username) && strlen($username) > 2)
             {
                 $conn = null;
-                header("Location: ../Camagru/signup.php?error=invalidusername");
+                header("Location: signup.php?error=invalidusername");
                 exit();
             }
             $stmnt = $conn->prepare("UPDATE users SET username=? WHERE id=?");
             $stmnt->execute([$username, $id]);
             $_SESSION['nameofuser'] = $username;
             $conn = null;
-            header("Location: ../Camagru/settings.php?username=changessucceeded");
+            header("Location: settings.php?username=changessucceeded");
         }
         if ($_POST['cemail'] && $_POST['emailvar'])
         {
@@ -95,14 +95,14 @@
             if (!filter_var($email,FILTER_VALIDATE_EMAIL))
             {
                 $conn = null;
-                header("Location: ../Camagru/settings.php?error=invalidemail");
+                header("Location: settings.php?error=invalidemail");
                 exit();
             }
             $stmnt = $conn->prepare("UPDATE users SET user_email=? WHERE id=?");
             $stmnt->execute([$email, $id]);
             $_SESSION['emailofuser'] = $email;
             $conn = null;
-            header("Location: ../Camagru/settings.php?email=changessucceeded");
+            header("Location: settings.php?email=changessucceeded");
         }
         if ($_POST['cpassword'] && $_POST['passwordvar'])
         {
@@ -114,14 +114,14 @@
             if (!$lowercase || !$uppercase || !$numbers || !$specialchars || strlen($password) < 8)
             {
                 $conn = null;
-                header("Location: ../Camagru/settings.php?error=weakpassword");
+                header("Location: settings.php?error=weakpassword");
                 exit();
             }
             $password = md5($_POST['passwordvar']);
             $stmnt = $conn->prepare("UPDATE users SET user_password=? WHERE id=?");
             $stmnt->execute([$password, $id]);
             $conn = null;
-            header("Location: ../Camagru/settings.php?password=changessucceeded");
+            header("Location: settings.php?password=changessucceeded");
             exit();
         }
         else{

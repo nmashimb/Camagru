@@ -2,7 +2,6 @@
 
 if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd']))
 {
-    //require 'dbh.inc.php';
     require 'config/database.php';
     $pswd = md5($_POST['passwd']);
     if (preg_match("/^[a-zA-Z0-9]*$/", $_POST['username']))
@@ -14,7 +13,7 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $row = $stmnt->fetch();
         if (!isset($row) || $row['username'] != $username || $row['verified'] == 0 || $row['user_password'] != $pswd){
             $conn = null;
-            header("Location: ../Camagru/index.php");
+            header("Location: index.php");
             exit();
         }
         //username works: Start session, allowing us to have global variables(session variable) with some user data.
@@ -23,7 +22,7 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $_SESSION['nameofuser'] = $row['username'];
         $_SESSION['emailofuser'] = $row['user_email'];
         $conn = null;
-        header("Location: ../Camagru/index.php?login=success");
+        header("Location: index.php?login=success");
         exit();
     }
     else{//if email is inserted!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -34,7 +33,7 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $row = $stmnt->fetch();
         if (!isset($row) || $row['user_email'] != $email || $row['verified'] == 0 || $row['user_password'] != $pswd){
             $conn = null;
-            header("Location:../Camagru/index.php");
+            header("Location: index.php");
             exit();
         }
         //email works: Start session, allowing us to have global variables(session variable) with some user data.
@@ -43,15 +42,15 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $_SESSION['nameofuser'] = $row['username'];
         $_SESSION['emailofuser'] = $row['user_email'];
         $conn = null;
-        header("Location: ../Camagru/index.php?login=success");
+        header("Location: index.php?login=success");
         exit();
     }
     $conn = null;
-    header("Location: ../Camagru/index.php");
+    header("Location: index.php");
     exit();
 }
 else{
     $conn = null;
-    header("Location: ../Camagru/index.php");
+    header("Location: index.php");
     exit();
 }

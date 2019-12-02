@@ -14,7 +14,7 @@
         if ($erro_chrs == 1)
         {
             $conn = null;
-            header("Location: ../Camagru/index.php?comment=failure");
+            header("Location: index.php?comment=failure");
             exit();
         }
         ///////////////////////////////////////////////////
@@ -34,6 +34,6 @@
             mail($to, $subject, $message, $headers);
         }
         $conn = null;
-        header("Location: ../Camagru/index.php?comment=success");
+        header("Location: index.php?comment=success");
         exit();
     }

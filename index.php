@@ -1,4 +1,5 @@
 <?php
+//author: nmashimb
     require "header.php";
     require 'config/setup.php';
 ?>
@@ -31,8 +32,3 @@
     </DIV>
     </BODY>
 </MAIN>
-
-<?php
-   // require "footer.php";
-?>
- </HTML>

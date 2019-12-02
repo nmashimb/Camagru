@@ -18,7 +18,7 @@
         $stmnt = $conn->prepare($sql);
         $stmnt->execute([$image_name, $image_cap, $_SESSION['idofuser'], $_SESSION['nameofuser'], $ImgOrder]);
         $conn = null;
-        header("Location: ../Camagru/cameralayout.php?takephoto=success");
+        header("Location: cameralayout.php?takephoto=success");
         exit();
         function super_impose($src,$dest,$added)
         {

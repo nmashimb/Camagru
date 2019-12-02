@@ -1,6 +1,6 @@
 <?php
-
-    if (isset($_POST["submitnew"]))
+ECHO "dddd";
+   if (isset($_POST["submitnew"]))
     {
         require 'config/database.php';
         $username = $_POST['newusername'];
@@ -14,33 +14,33 @@
         $numbers = preg_match('@[0-9]@', $password);
         if (empty($username) || empty($email) || empty($password) || empty($psswrdcheck)){
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=emptyfields&email=".$email);
+            header("Location: signup.php?error=emptyfields&email=".$email);
             exit();
         }
         elseif (!filter_var($email,FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username) && strlen($username) > 2){
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=invalidusernameandemail");
+            header("Location: signup.php?error=invalidusernameandemail");
             exit();
         }
         elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)){
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=invalidemail");
+            header("Location: signup.php?error=invalidemail");
             exit();
         }/*check if username valid, if it has letters or numbers, nothing else*/
         elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username) && strlen($username) > 2){
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=invalidusername&email=".$email);
+            header("Location: signup.php?error=invalidusername&email=".$email);
             exit();
         }
         elseif ($password != $psswrdcheck){
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=passwordsdontmatch");
+            header("Location: signup.php?error=passwordsdontmatch");
             exit();
         }
         elseif (!$lowercase || !$uppercase || !$numbers || !$specialchars || strlen($password) < 8)
         {
             $conn = null;
-            header("Location: ../Camagru/signup.php?error=weakpassword");
+            header("Location: signup.php?error=weakpassword");
             exit();
         }
         else
@@ -52,13 +52,12 @@
             //checking if username is taken
             if (!empty($rows)){
                 $conn = null;
-                header("Location: ../Camagru/signup.php?error=usernametaken");
+                header("Location: signup.php?error=usernametaken");
                 exit();
             }
             else{//now we insert the data in our table
                 //password has to be hashed first before stored.
                 $vkey = md5(time().$username);  
-                //$param = array(':usrnme'=>$username,':mail'=>$email,':pswd'=>md5($password), ':vkey'=> $vkey);
                 $stmnt = $conn->prepare("INSERT INTO users (username, user_email, user_password, vkey)
                                         VALUES(?, ?, ?, ?)");
                 $stmnt->execute([$username, $email, md5($password), $vkey]);
@@ -66,7 +65,7 @@
                 //send verification email
                 $subject = "Email Verification";
                 $message = "Thank you for making a Camagru account click  
-                <a href= 'http://localhost:8080/Camagruu/Camagru/verify.inc.php?user= $username&vkey=$vkey'>HERE</a> to register your account.";
+                <a href= 'http://localhost:8080/Camagru/verify.inc.php?user= $username&vkey=$vkey'>HERE</a> to register your account.";
                 //sending content type because i use html in message
                 $headers = 'From: nonreply@camagru.com'."\r\n";
                 $headers .= "MIME-Version: 1.0"."\r\n";
