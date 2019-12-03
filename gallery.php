@@ -1,20 +1,18 @@
-<?php
-    session_start();
-?>
 
 <!DOCTYPE HTML>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<HTML>
+<HTML lang="en">
 <HEAD>
-<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
 </HEAD>
-    <BODY>
-            <SECTION>
-            <H1> Gallery </H1>
+<BODY>
+        <H1> Gallery </H1>
             <DIV>
                 <!-- CONTAINERS THAT WILL HOLD EACH PIC IN GALLERY -->
-                <?php
-                
+                <?php 
                 /////PAGINATION
                 if (isset($_GET['start']))
                 {
@@ -31,7 +29,7 @@
                 $total_rows = $row[0];
                 
                 $total_pages = ceil($total_rows / $pics_per_page);
-                $stmnt = $conn->prepare("SELECT * FROM gallery ORDER BY image_order DESC LIMIT $start, $pics_per_page");
+                $stmnt = $conn->prepare("SELECT * FROM gallery ORDER BY image_id DESC LIMIT $start, $pics_per_page");
                 $stmnt->execute();
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +53,12 @@
                         <DIV>
                             <h4>'.$row['image_uploader_name'].': '.$row['image_caption'].'</h4>
                         </DIV>';
-                    echo '<h6>comments</h6>';
+                    ///////////// no of comment////////////
+                    $sqlcmnnts = $conn->prepare("SELECT COUNT(*) FROM comments WHERE image_id=?");
+                    $sqlcmnnts->execute([$row['image_id']]);
+                    $noofcm = $sqlcmnnts->fetch();
+                        
+                    echo '<h6> '.$noofcm[0].' comment(s)</h6>';
                         /////////////COMMENTS///////////////////////////////////
                         $sqlcmnnts = $conn->prepare("SELECT * FROM comments WHERE image_id=? ORDER BY comment_id ASC");
                         $sqlcmnnts->execute([$row['image_id']]);
@@ -94,11 +97,10 @@
                             <INPUT class= "input-caption" type= "text" name= "caption" placeholder= "Caption...">
                             <INPUT type= "file" name= "image">
                             <INPUT class= "input-upload" type= "submit" name= "sub" value= "Upload">
-                        </FORM>
-                </DIV>';
+                        </FORM><BR />
+                    </DIV>';
                 }
                 ?>
-            </DIV>
-            </SECTION>
-    </BODY>
+            </DIV>      
+</BODY>
 </HTML>

@@ -1,14 +1,16 @@
-<?php
-session_start();
-?>
 <!DOCTYPE HTML>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="style.css">
-<HTML>
+<HEAD>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
+</HEAD>
 <BODY>
     <HEADER>
         <DIV>
-            <?php
+        <?php
+        session_start();
         if (!empty($_SESSION['idofuser']) && !empty($_SESSION['nameofuser']))
         {
             echo'<DIV class= "login-bar">

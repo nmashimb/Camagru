@@ -1,13 +1,16 @@
-
-<?php
-    require "header.php";
-?>
 <!DOCTYPE HTML>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="style.css">
-<HTML>
+<HTML lang="en">
+<HEAD>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
+</HEAD>
 <BODY>
+    <?php
+        require "header.php";
+    ?>
     <DIV class= "wrap">
         <H1>Sign Up</H1>
         <FORM  action= "signup.inc.php" method= "POST">
@@ -25,9 +28,12 @@
         <FORM action= "emailpasswordreset.php" method= "POST">
             <INPUT class= "inputs" type= "submit" name= "resetbutt" value = "Send Password Reset Email">
         </FORM>
-        
+        <FORM action= "backfrommygallery.inc.php" method= "POST">
+            <INPUT class= "input-login" type="submit" name= "backk" value= "Back">
+        </FORM>
     </DIV>
-<FOOTER> 
+    
+<FOOTER id= "footer"> 
     <?PHP require 'footer.php'?>
 </FOOTER>
 </BODY>

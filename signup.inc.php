@@ -1,5 +1,5 @@
 <?php
-ECHO "dddd";
+
    if (isset($_POST["submitnew"]))
     {
         require 'config/database.php';

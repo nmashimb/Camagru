@@ -25,13 +25,13 @@
         if (empty($row) || $row['verified'] == 0)
         {
             $conn = null;
-            header("Location: ../Camagru/emailpasswordreset.php?error=usernotfound");
+            header("Location: emailpasswordreset.php?error=usernotfound");
             exit();
         }
         else{//send email to reset password
             $token = $row['vkey'];
             $subject = "Reset Camagru Password";
-            $message = "click <a href= 'http://localhost:8080/resetpassword.inc.php?useremail=$usermail&token=$token'>HERE</a> to change your Camagru account password.";
+            $message = "click <a href= 'http://localhost:8080/Camagru/resetpassword.inc.php?useremail=$usermail&token=$token'>HERE</a> to change your Camagru account password.";
             $headers = 'From: nonreply@camagru.com'."\r\n";
             $headers .= "MIME-Version: 1.0"."\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";

@@ -1,5 +1,13 @@
 <!DOCTYPE HTML>
-<MAIN>
+<HTML lang="en">
+<HEAD>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
+</HEAD>
+<BODY>
     <DIV>
     <?php
         if (isset($_GET['useremail']) && isset($_GET['token'])){
@@ -19,15 +27,14 @@
         else{
             $conn = null;
             echo '<H1>Change Your Password</H1>
-            <FORM action= "resetuserpassword.inc.php?token='.$token.'&email='.$usermail.'" method= "POST">
-            <!-- Old Password: <INPUT type= "password" name= "oldpswd" placeholder= "Enter Old Password"> -->
-            New Password: <INPUT type= "password" name= "newpswd" placeholder= "Enter New Password">
-            Confirm Password: <INPUT type= "password" name= "newpswdconf" placeholder= "Re-Enter New Password">
-            <INPUT type= "submit" name= "sub" value= "Change Password">
+            <FORM class- "login-bar" action= "resetuserpassword.inc.php?token='.$token.'&email='.$usermail.'" method= "POST">
+                <INPUT class= "inpts" type= "password" name= "newpswd" placeholder= "Enter New Password">
+                <INPUT class= "inuts" type= "password" name= "newpswdconf" placeholder= "Re-Enter New Password">
+                <INPUT class= "input-login" type= "submit" name= "sub" value= "Change Password">
             </FORM>';
         }
     }
-    require 'footer.php'; 
     ?>
-    </DIV>
-</MAIN>
+    </DIV id= "footer">
+    <FOOTER><?php require 'footer.php'?></FOOTER>
+</BODY>

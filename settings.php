@@ -1,14 +1,16 @@
-<?php
-    session_start();
-    require 'header.php';
-?>
 <!DOCTYPE HTML>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="style.css">
-<HTML>
-<MAIN>
+<HTML lang="en">
+<HEAD>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
+</HEAD>
 <BODY>
-    <?php 
+    <?php
+        session_start();
+        require 'header.php'; 
         if (!empty($_SESSION['idofuser']) && !empty($_SESSION['nameofuser']))
         {
             require 'config/database.php';
@@ -27,8 +29,8 @@
             echo '
                     <h1>Settings</h1>
                 <DIV class= "wrap">
-                                <h2 style= "text-align: center"> '.$name.' </h2>
-                            <H5 style="text-align: center"> '.$_SESSION['emailofuser'].' </H5>
+        <h2 style= "text-align: center"> '.$name.' </h2>
+    <H5 style="text-align: center"> '.$_SESSION['emailofuser'].' </H5>
                         <FORM action= "settings.inc.php" method= "POST">
                             <INPUT class= "inputs" type= "text" name= "usernamevar" placeholder= "New Username">    
                             <INPUT class="input-login" type= "submit" name="cusername" value= "Change My Username">
@@ -46,16 +48,16 @@
                         </BR>
                         </BR>
                             <INPUT class="input-login" type= "submit" name= "back" value= "Back">
-                    </FORM>
+                        </FORM>
             </DIV>';
         }   
         $conn = null; 
     ?>
+<DIV>
+<FOOTER id= "footer">    
     <?php
     require 'footer.php';
     ?>
-</FOOTER>
-    </BODY>
-</MAIN>
+</FOOTER></DIV>
+</BODY>
 </HTML>
-<FOOTER>

@@ -32,11 +32,15 @@ var sticker = "";
 canvas = document.getElementById('canvas');
 context = canvas.getContext('2d');
 document.getElementById('wow').addEventListener('click', function stickeruno(){
-    context.drawImage(document.getElementById('wow'),50, 50, 60, 60);
+    context.drawImage(document.getElementById('wow'),270, 200, 100, 100);
 });
 document.getElementById('ok').addEventListener('click', function stickertwo(){
-    context.drawImage(document.getElementById('ok'),50, 150, 60, 60);
+    context.drawImage(document.getElementById('ok'),150, 190, 100, 100);
 });
+document.getElementById('kak').addEventListener('click', function stickerthree(){
+    context.drawImage(document.getElementById('kak'),20, 190, 100, 100);
+});
+
 function withSticker(){
 var ajx_obj = new XMLHttpRequest();
 ajx_obj.onreadystatechange = function()
@@ -49,7 +53,7 @@ ajx_obj.onreadystatechange = function()
                     console.log(ajx_obj.responseText);
                 }
                 else
-                    alert("image not saved!");
+                    alert("image saved!");
                      console.log(ajx_obj.responseText);
             }
         }

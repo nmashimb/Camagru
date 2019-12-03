@@ -1,17 +1,17 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE HTML>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<HTML>
+<HTML lang="en">
 <HEAD>
-<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
 </HEAD>
-    <BODY>
+<BODY>
         <HEADER>
             <DIV>
                 <?php 
+                session_start();
                 if (isset($_SESSION['idofuser']) && isset($_SESSION['nameofuser']))
                 {
                     echo '<DIV class= "login-bar">
@@ -74,7 +74,12 @@
                           </A>
                         <h4>'.$row['image_uploader_name'].': '.$row['image_caption'].'</h4>';
                         
-                    echo '<h6>comments</h6>';
+                    ///////////// no of comment////////////
+                    $sqlcmnnts = $conn->prepare("SELECT COUNT(*) FROM comments WHERE image_id=?");
+                    $sqlcmnnts->execute([$row['image_id']]);
+                    $noofcm = $sqlcmnnts->fetch();
+                        
+                    echo '<h6> '.$noofcm[0].' comment(s)</h6>';
                     /////////////COMMENTS///////////////////////////////////
                     $sqlcmnnts = $conn->prepare("SELECT * FROM comments WHERE image_id=? ORDER BY comment_id ASC");
                     $sqlcmnnts->execute([$row['image_id']]);
@@ -113,13 +118,13 @@
                 }
                 ?>
             </SECTION>
-        </MAIN>
-        <DIV>
-        <FOOTER id= "footer"> 
-            <?php
-                require "footer.php";
-            ?>
-        </FOOTER>
-    </DIV>
-    </BODY>
+    
+<DIV>
+    <FOOTER id= "footer"> 
+        <?php
+            require "footer.php";
+        ?>
+    </FOOTER>
+</DIV>
+</BODY>
 </HTML>

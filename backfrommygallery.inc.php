@@ -6,3 +6,8 @@
         header("Location: index.php?back=success");
         exit();
     }
+    elseif(isset($_POST['backk']))
+    {
+        header("Location: index.php");
+        exit();
+    }

@@ -13,7 +13,7 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $row = $stmnt->fetch();
         if (!isset($row) || $row['username'] != $username || $row['verified'] == 0 || $row['user_password'] != $pswd){
             $conn = null;
-            header("Location: index.php");
+            header("Location: index.php?login=failed");
             exit();
         }
         //username works: Start session, allowing us to have global variables(session variable) with some user data.
@@ -33,7 +33,7 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         $row = $stmnt->fetch();
         if (!isset($row) || $row['user_email'] != $email || $row['verified'] == 0 || $row['user_password'] != $pswd){
             $conn = null;
-            header("Location: index.php");
+            header("Location: index.php?login=failed");
             exit();
         }
         //email works: Start session, allowing us to have global variables(session variable) with some user data.
@@ -46,11 +46,11 @@ if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['passwd
         exit();
     }
     $conn = null;
-    header("Location: index.php");
+    header("Location: index.php?login=failed");
     exit();
 }
 else{
     $conn = null;
-    header("Location: index.php");
+    header("Location: index.php?login=failed");
     exit();
 }

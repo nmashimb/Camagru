@@ -1,16 +1,20 @@
+<!DOCTYPE HTML>    
+<HTML lang="en">
+<HEAD>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camagru</title>
+</HEAD>
+<BODY>
 <?php
 //author: nmashimb
     require "header.php";
     require 'config/setup.php';
 ?>
-<!DOCTYPE HTML>    
-<HTML>
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<MAIN>
-<BODY>
-<DIV id= "page-container">
-        <SECTION id= "content-wrap">
+<DIV>
+    <SECTION id= "content-wrap">
             <?php
             session_start();
             if (!empty($_SESSION['nameofuser']) && !empty($_SESSION['idofuser']))
@@ -22,13 +26,12 @@
             }
             ?>
         </SECTION>
-    </DIV>
-    <DIV>
-        <FOOTER id= "footer"> 
-            <?php
-                require "footer.php";
-            ?>
-        </FOOTER>
-    </DIV>
-    </BODY>
-</MAIN>
+</DIV>
+
+<FOOTER id= "footer"> 
+    <?php
+        require "footer.php";
+    ?>
+</FOOTER>
+</BODY>
+</HTML>

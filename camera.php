@@ -14,6 +14,9 @@
         $rows = $stmnt->rowCount(); //no. of pics in gallery
         $ImgOrder = $rows + 1;
         $image_cap = "";
+        $image_cap = $_POST['capt'];
+
+
         $sql = "INSERT INTO gallery (image_name, image_caption, image_uploader_id, image_uploader_name, image_order) VALUES (?,?,?, ?,?)";
         $stmnt = $conn->prepare($sql);
         $stmnt->execute([$image_name, $image_cap, $_SESSION['idofuser'], $_SESSION['nameofuser'], $ImgOrder]);
