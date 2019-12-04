@@ -16,7 +16,6 @@
 <DIV>
     <SECTION id= "content-wrap">
             <?php
-            session_start();
             if (!empty($_SESSION['nameofuser']) && !empty($_SESSION['idofuser']))
             {
                 require 'gallery.php';
