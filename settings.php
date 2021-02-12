@@ -9,7 +9,6 @@
 </HEAD>
 <BODY>
     <?php
-        session_start();
         require 'header.php'; 
         if (!empty($_SESSION['idofuser']) && !empty($_SESSION['nameofuser']))
         {

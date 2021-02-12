@@ -11,6 +11,19 @@
 <BODY>
         <H1> Gallery </H1>
             <DIV>
+            <?php
+                //ONLY USERS CAN SEE THE PIC UPLOAD FORM 
+                if (isset($_SESSION['idofuser']) && isset($_SESSION['nameofuser']))
+                {
+                echo '<DIV class= "wrap-gallery">
+                        <FORM action= "uploadpics.inc.php" method= "POST" enctype= "multipart/form-data">
+                            <INPUT class= "input-caption" type= "text" name= "caption" placeholder= "Caption...">
+                            <INPUT type= "file" name= "image">
+                            <INPUT class= "input-upload" type= "submit" name= "sub" value= "Upload">
+                        </FORM><BR />
+                    </DIV><BR />';
+                }
+                ?>
                 <!-- CONTAINERS THAT WILL HOLD EACH PIC IN GALLERY -->
                 <?php 
                 /////PAGINATION
@@ -88,19 +101,7 @@
                 $conn = null;
                 ?>
                 <!--FORM TO UPLOAD PICS-->
-                <?php
-                //ONLY USERS CAN SEE THE PIC UPLOAD FORM 
-                if (isset($_SESSION['idofuser']) && isset($_SESSION['nameofuser']))
-                {
-                echo '<DIV class= "wrap-gallery">
-                        <FORM action= "uploadpics.inc.php" method= "POST" enctype= "multipart/form-data">
-                            <INPUT class= "input-caption" type= "text" name= "caption" placeholder= "Caption...">
-                            <INPUT type= "file" name= "image">
-                            <INPUT class= "input-upload" type= "submit" name= "sub" value= "Upload">
-                        </FORM><BR />
-                    </DIV>';
-                }
-                ?>
+               
             </DIV>      
 </BODY>
 </HTML>

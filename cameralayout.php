@@ -11,7 +11,6 @@
    
    <?php
     require 'header.php'; 
-    session_start();
     if (isset($_SESSION['idofuser'])){   
 
     echo '<h1>My Camera </h1>

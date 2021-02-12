@@ -2,7 +2,7 @@
 
     $servername= "localhost";
     $dbusername= "root";
-    $dbpassword= "123456";
+    $dbpassword= "";
     $mydb= "camagru";
     
 try { //we use to avoid getting an error that will display our server, username and posible password

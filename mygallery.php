@@ -105,7 +105,6 @@
                     $conn = null;
                 ?>
             </DIV>
-
                 <?php 
                     echo '<DIV class= "wrap-gallery">
                         <FORM action= "uploadpics.inc.php" method= "POST" enctype= "multipart/form-data">
